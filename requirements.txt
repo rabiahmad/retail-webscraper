@@ -1,0 +1,11 @@
+pandas==2.0.3
+prefect==2.14.17
+fastapi[all]
+sqlmodel==0.0.14
+streamlit==1.30.0
+pytest==8.0.0
+coverage==7.4.1
+beautifulsoup4==4.12.3
+selenium==4.17.2
+webdriver-manager==4.0.1
+undetected-chromedriver==3.5.4
