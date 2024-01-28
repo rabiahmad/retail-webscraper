@@ -1,13 +1,10 @@
 import yaml
 
 
-def combine_configs():
+def combine_configs(*args):
     config = {}
-
-    # Add more configs here as necessary
-    logging_config = get_config("src/config/logging_config.yaml")
-    config["logging"] = logging_config
-
+    for entry in args:
+        config[entry[0]] = get_config(entry[1])
     return config
 
 
@@ -17,4 +14,9 @@ def get_config(yaml_file_path):
     return config
 
 
-config = combine_configs()
+config_entries = (
+    ["logging", "src/config/logging_config.yaml"],
+    ["settings", "src/config/settings.yaml"],
+)
+
+config = combine_configs(*config_entries)

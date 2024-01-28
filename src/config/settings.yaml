@@ -1,0 +1,4 @@
+version: 1
+
+driver_paths:
+  CHROME_DRIVER_PATH: C:/Users/rabi_/Projects/retail-webscraper/chromedriver.exe

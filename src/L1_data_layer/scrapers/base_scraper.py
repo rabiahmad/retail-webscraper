@@ -23,11 +23,6 @@ class BaseScraper:
         DRIVER_PATH = "C:/Users/rabi_/Projects/retail-webscraper/chromedriver.exe"  # TODO this should not be hard coded here
         self.service = Service(executable_path=DRIVER_PATH)
         self.options = webdriver.ChromeOptions()
-        # self.options = Options()
-
-        user_agent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36"
-        self.options.add_argument(f"user-agent={user_agent}")
-
         self.driver = self.create_undetected_headless_driver(
             options=self.options, service=self.service
         )

@@ -22,21 +22,54 @@ class TestFileContent:
 
 
 @pytest.fixture(autouse=True, scope="session")
-def temp_yaml():
+def temp_yaml_1():
     file_content = (
         """version: 42\nfoo_data:\n  location: some/directory/data.csv\n  type: csv"""
     )
     yield TestFileContent(file_content)
 
 
-def test_get_config(temp_yaml):
-    actual = get_config(temp_yaml.filename)
+@pytest.fixture(autouse=True, scope="session")
+def temp_yaml_2():
+    file_content = """version: 1\ndriver_paths:\n  CHROME_DRIVER_PATH: some/directory/chromedriver.exe"""
+    yield TestFileContent(file_content)
+
+
+def test_get_config(temp_yaml_1):
+    actual = get_config(temp_yaml_1.filename)
 
     expected = {
         "version": 42,
         "foo_data": {
             "location": "some/directory/data.csv",
             "type": "csv",
+        },
+    }
+
+    assert actual == expected
+
+
+def test_combine_configs(temp_yaml_1, temp_yaml_2):
+    config_entries = (
+        ["foo", temp_yaml_1.filename],
+        ["bar", temp_yaml_2.filename],
+    )
+
+    actual = combine_configs(*config_entries)
+
+    expected = {
+        "foo": {
+            "version": 42,
+            "foo_data": {
+                "location": "some/directory/data.csv",
+                "type": "csv",
+            },
+        },
+        "bar": {
+            "version": 1,
+            "driver_paths": {
+                "CHROME_DRIVER_PATH": "some/directory/chromedriver.exe",
+            },
         },
     }
 
