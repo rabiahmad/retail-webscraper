@@ -3,3 +3,4 @@
 __pycache__
 secrets.toml
 .pytest_cache
+scratch
