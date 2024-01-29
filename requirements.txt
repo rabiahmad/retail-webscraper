@@ -7,9 +7,6 @@ pytest==8.0.0
 coverage==7.4.1
 beautifulsoup4==4.12.3
 selenium==4.17.2
-<<<<<<< HEAD
-=======
 playwright==1.41.1
->>>>>>> 24b4b3f (resolved conflicts)
 webdriver-manager==4.0.1
 undetected-chromedriver==3.5.4
