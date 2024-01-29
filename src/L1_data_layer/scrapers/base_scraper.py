@@ -68,7 +68,12 @@ class BaseScraper:
             driver = uc.Chrome(options=options, service=service)
             driver.maximize_window()
 
-        return driver
+            return driver
+        else:
+            raise Exception(
+                'Please specify "Chrome" as the browser in create_undetected_headless_driver.'
+                "Other browsers are not supported at this time."
+            )
 
     def zenrows_client(self):
         with open("src/config/secrets.toml", "r") as f:
